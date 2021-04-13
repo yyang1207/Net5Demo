@@ -18,4 +18,5 @@ RUN dotnet publish "Net5Demo.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-CMD ["dotnet", "Net5Demo.dll","--server.urls","http://5000"]
+ENV ASPNETCORE_URLS http://+:5000
+ENTRYPOINT ["dotnet", "Net5Demo.dll"]
